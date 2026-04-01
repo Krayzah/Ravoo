@@ -24,12 +24,12 @@ public class LevelButtonUI : MonoBehaviour
             stars[i].SetActive(false);
         }
 
-        /*// turn ON only the correct amount
+        // turn ON only the correct amount
         for (int i = 0; i < count; i++)
         {
             stars[i].SetActive(true);
-        }*/
+        }
 
-        stars[count - 1].SetActive(true);
+       // stars[count - 1].SetActive(true);
     }
 }

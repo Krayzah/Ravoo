@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class ButtonManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject OneStar;
     [SerializeField] GameObject TwoStars;
     [SerializeField] GameObject ThreeStars;
+    [SerializeField] float timeToChangePannelinSec = 1.5f;
+
 
     [SerializeField] int currentIndex = 0;
     int points = 0;
@@ -29,10 +33,16 @@ public class ButtonManager : MonoBehaviour
     {
         audioSource.PlayOneShot(sucessSFX, 0.7F);
         AddScore();
+        StartCoroutine(LoadNextPannel(timeToChangePannelinSec));
+    }
+    IEnumerator LoadNextPannel(float delayinSec)
+    {
+        yield return new WaitForSeconds(delayinSec);
         NextPannel();
+        
     }
 
-    public void NextPannel()
+    private void NextPannel()
     {
         if (currentIndex < states.Length - 1)
         {
@@ -51,13 +61,12 @@ public class ButtonManager : MonoBehaviour
     {
         int starsEarned = 0;
 
-        // ✅ FIXED based on your scoring (points increase by 3)
-        if (points <= 3)
+        if (points <= 2)
         {
             starsEarned = 1;
             OneStar.SetActive(true);
         }
-        else if (points <= 6)
+        else if (points <= 4)
         {
             starsEarned = 2;
             TwoStars.SetActive(true);

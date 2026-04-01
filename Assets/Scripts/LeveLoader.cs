@@ -30,4 +30,11 @@ public class LeveLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Levels");
     }
+
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
