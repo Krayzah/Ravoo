@@ -11,7 +11,6 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] AudioClip sucessSFX;
     [SerializeField] AudioClip failureSFX;
     [SerializeField] int pointIncrease = 3;
-    [SerializeField] TextMeshProUGUI pointText;
     [SerializeField] GameObject OneStar;
     [SerializeField] GameObject TwoStars;
     [SerializeField] GameObject ThreeStars;
@@ -26,7 +25,6 @@ public class ButtonManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        DisplayScore();
     }
 
     public void CorrectAnswer()
@@ -101,11 +99,5 @@ public class ButtonManager : MonoBehaviour
     public void AddScore()
     {
         points += pointIncrease;
-        DisplayScore();
-    }
-
-    private void DisplayScore()
-    {
-        pointText.text = points.ToString();
     }
 }
