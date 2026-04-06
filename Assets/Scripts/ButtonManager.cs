@@ -63,16 +63,19 @@ public class ButtonManager : MonoBehaviour
         {
             starsEarned = 1;
             OneStar.SetActive(true);
+            SetLastPannelinArrayOff();
         }
         else if (points <= 4)
         {
             starsEarned = 2;
             TwoStars.SetActive(true);
+            SetLastPannelinArrayOff();
         }
         else
         {
             starsEarned = 3;
             ThreeStars.SetActive(true);
+            SetLastPannelinArrayOff();
         }
 
         Debug.Log("Stars Earned Before Save: " + starsEarned);
@@ -88,6 +91,11 @@ public class ButtonManager : MonoBehaviour
 
             Debug.Log("Saved Stars: " + starsEarned);
         }
+    }
+
+    private void SetLastPannelinArrayOff()
+    {
+        states[states.Length - 1].SetActive(false);
     }
 
     public void WrongAnswer()
