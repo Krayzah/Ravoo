@@ -3,23 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class LeveLoader : MonoBehaviour
 {
-
-   /* public static LeveLoader Instance;
-
-    private void Awake()
-    {
-        // If no instance exists, set this
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // persists across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // prevents duplicates
-        }
-    }*/
-
     public void LoadLevelByNumber(int levelNumber)
     {
         string levelName = "Level" +" " + levelNumber;
@@ -28,6 +11,7 @@ public class LeveLoader : MonoBehaviour
 
     public void LoadLevelsScene()
     {
+        UnlockNewLevel();
         SceneManager.LoadScene("Levels");
     }
 
@@ -36,5 +20,15 @@ public class LeveLoader : MonoBehaviour
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void UnlockNewLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+            {
+                PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+                PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
+                PlayerPrefs.Save();
+            }
     }
 }

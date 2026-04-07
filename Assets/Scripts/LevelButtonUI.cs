@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelButtonUI : MonoBehaviour
 {
     public int levelIndex; // Set in Inspector
+
     
 
     [SerializeField] GameObject[] stars; // Drag 3 star images here
