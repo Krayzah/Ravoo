@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Security.Cryptography;
+using NUnit.Framework;
 
 
 public class ButtonManager : MonoBehaviour
@@ -107,5 +109,11 @@ public class ButtonManager : MonoBehaviour
     public void AddScore()
     {
         points += pointIncrease;
+    }
+
+    public void ExitLevel()
+    {
+        points = 0;
+        SceneManager.LoadScene("Levels");
     }
 }
